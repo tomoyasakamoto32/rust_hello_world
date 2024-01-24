@@ -1,4 +1,9 @@
-use std::fmt::{Debug, Display};
+use std::{
+    collections::{BinaryHeap, HashMap, HashSet, VecDeque},
+    env,
+    fmt::{Debug, Display},
+    io,
+};
 
 fn fizzbuzz1(end: i32) {
     let mut cnt: i32 = 1;
@@ -98,13 +103,56 @@ fn double_even(b: i32) -> Result<i32, String> {
     Ok(x * 2)
 }
 
-// use rust_hello_world::sample_trait::{double_area, Circle, Rectangle, Shape};
-fn main() {
-    match double_even(1) {
-        Ok(val) => println!("{}", val),
-        Err(err) => {
-            println!("mainでハンドリング");
-            println!("{}", err);
+struct Counter {
+    start: u32,
+    end: u32,
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+
+    fn next(&mut self) -> Option<u32> {
+        if self.start >= self.end {
+            None
+        } else {
+            let result: Option<u32> = Some(self.start);
+            self.start += 1;
+            result
         }
     }
+}
+
+fn maybe_panic(flag: bool) {
+    if flag == false {
+        println!("safe");
+        panic!("unexpected");
+    } else {
+        panic!("flag is true!!!");
+    }
+}
+
+#[cfg(test)]
+mod test_module {
+    #[test]
+    #[should_panic(expected = "flag is true!!!")]
+    fn test_maybe_panic() {
+        super::maybe_panic(true);
+    }
+
+    #[test]
+    fn test_calc_add() {
+        assert_eq!(1 + 1, 2);
+    }
+}
+
+// use rust_hello_world::sample_trait::{double_area, Circle, Rectangle, Shape};
+fn main() {
+    println!("文字列を入力してください。");
+    let mut input: String = String::new();
+
+    io::stdin().read_line(&mut input).unwrap();
+    println!("{}", input);
+
+    let num: i32 = input.trim().parse().unwrap();
+    println!("{}", num * 10);
 }
