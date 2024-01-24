@@ -32,33 +32,6 @@ fn fizzbuzz2(end: i32) {
     }
 }
 
-// struct Rectangle {
-//     width: u32,
-//     height: u32,
-// }
-
-// impl Rectangle {
-//     fn area(&self) -> u32 {
-//         self.width * self.height
-//     }
-
-//     fn new(width: u32, height: u32) -> Self {
-//         Rectangle { width, height }
-//     }
-// }
-
-// enum Shape {
-//     Circle,
-//     Square(u32),
-//     Triangle { base: u32, height: u32 },
-// }
-
-// impl Shape {
-//     fn sample_method(&self) {
-//         println!("sample_method")
-//     }
-// }
-
 fn max<T>(a: T, b: T) -> T
 where
     T: PartialOrd + Debug,
@@ -145,7 +118,6 @@ mod test_module {
     }
 }
 
-// use rust_hello_world::sample_trait::{double_area, Circle, Rectangle, Shape};
 fn main() {
     println!("文字列を入力してください。");
     let mut input: String = String::new();
